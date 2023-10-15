@@ -11,7 +11,12 @@ async function connect() {
 
         channel.consume("jobs", message => {
             //console.log(message); // This is the buffer received from publisher
-            console.log("received job with id: " + message.content.toString());
+            const msg = JSON.parse(message.content.toString());
+            console.log("received job with id: " + msg.jobNumber);
+
+            if (msg.jobNumber == 7) {
+                channel.ack(message);
+            }
         })
 
         console.log("waiting for messages...");
