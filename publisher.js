@@ -1,6 +1,6 @@
 const amqp = require("amqplib");
 
-const msg = { jobNumber: 7 };
+const msg = { jobNumber: process.argv[2] };
 
 connect();
 
